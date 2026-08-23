@@ -1,0 +1,11 @@
+.research/
+.tmp-hb/
+coverage/
+dist/
+node_modules/
+pnpm-lock.yaml
+playwright-report/
+public/charsets/
+public/freq/
+src/generated/
+test-results/

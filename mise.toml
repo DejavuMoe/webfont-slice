@@ -1,0 +1,4 @@
+# Toolchain aligned with the local development machine.
+[tools]
+node = "24.19.0"
+pnpm = "11.24.0"

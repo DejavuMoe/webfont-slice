@@ -1,0 +1,27 @@
+# dependencies and forbidden lockfiles
+node_modules/
+.pnpm-store/
+package-lock.json
+yarn.lock
+
+# build and test output
+dist/
+src/generated/
+coverage/
+playwright-report/
+test-results/
+
+# local research and files
+.research/
+.tmp-hb/
+*.local
+.env*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
