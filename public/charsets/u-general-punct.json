@@ -1,0 +1,1 @@
+{"id":"u-general-punct","name":"西文广义标点","category":"unicode","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"General Punctuation","ranges":[[8192,8303]],"expectedCount":112}

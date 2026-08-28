@@ -1,0 +1,56 @@
+WebFont Slice — Third-party notices and data sources
+
+Runtime libraries
+-----------------
+- HarfBuzz 10.4 / hb-subset-wasm 0.4.0: MIT / Old MIT
+  https://github.com/kyosuke/hb-subset-wasm
+- Google WOFF2 / wawoff2 2.0.1: MIT
+- opentype.js 2.0.0: MIT
+- Comlink 4.4.2: Apache-2.0
+- fflate 0.8.3: MIT
+- React and React DOM: MIT
+- Workbox / workbox-window: MIT
+- Lucide icons / lucide-react 1.48: ISC
+- argparse (transitive): Python-2.0
+
+WOFF1 decoding is implemented by this project from the WOFF 1.0 table-container specification; it does not use a third-party font rewriting library.
+
+Development tooling is distributed under its respective open-source license. `pnpm licenses list --prod` reports only MIT, ISC, Apache-2.0 and Python-2.0 runtime dependency groups.
+
+Charset and Unicode data
+------------------------
+- Unicode Character Database 17.0.0 Blocks.txt and Microsoft CP936/CP950 mapping snapshots:
+  https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt
+  https://www.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/
+  Unicode Terms of Use: https://www.unicode.org/terms_of_use.html
+- General Standard Chinese Characters Table (2013), digitized snapshot from
+  chenny/General-Chinese-Characters-Table-Pro@579687e (MIT), based on the official text.
+- Modern Chinese common/general character tables (1988), preserved snapshot from
+  quanh/chinese-char-dict@97b5d4f. These are legacy standard facts.
+- Taiwan Ministry of Education Commonly/less-commonly Used Characters, digitized snapshot from
+  cjkvi/cjkvi-tables@096c255. Standard fact data; UI identifies it as a community digitization.
+- Hong Kong List of Graphemes of Commonly-used Chinese Characters, digitized package from
+  leonsilicon/list-of-graphemes-of-commonly-used-chinese-characters@07f649a (MIT), based on the 2000 revised publication.
+- HKSCS-2016 snapshot from data.gov.hk, TSV conversion from yawnoc/hkscs-2016@1c5900f.
+  Hong Kong Government open data terms apply to the original dataset.
+- Functional character lists are project-maintained factual code-point selections under MIT.
+
+Full fixed revisions, counts and source paths are documented in tools/charset-sources/README.md and docs/DATA.md.
+
+Frequency data
+--------------
+- SUBTLEX-CH-CHR: Cai, Q. & Brysbaert, M. (2010), Chinese character frequencies based on film subtitles.
+- JSON distribution: subtlex-ch-chr 0.0.0 (MIT), https://github.com/leonsilicon/subtlex-ch-chr
+- The traditional-Chinese profile is derived from the corpus above with OpenCC character mappings
+  (STCharacters.txt, TWVariants.txt), BYVoid/OpenCC@178f05d, Apache License 2.0:
+  https://github.com/BYVoid/OpenCC. The snapshot and its license are in tools/charset-sources/opencc/.
+
+Test fonts
+----------
+- ABeeZee: SIL Open Font License 1.1.
+- Noto Sans SC / Noto CJK: SIL Open Font License 1.1; repository fixture is a generated test subset.
+- Source Serif 4: SIL Open Font License 1.1; includes OTF/CFF and a generated variable test subset.
+- JetBrains Mono 2.304: SIL Open Font License 1.1; repository fixture is a generated monospace test subset.
+- Google Fonts color-fonts samples: Apache License 2.0.
+
+Each fixture directory under src/test/fixtures/ contains its license and provenance.

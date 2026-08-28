@@ -1,0 +1,256 @@
+{
+  "version": 2,
+  "generatedFrom": "tools/charset-sources",
+  "presets": [
+    {
+      "id": "u-cjk-basic",
+      "name": "CJK 统一表意文字（基本集）",
+      "category": "unicode",
+      "expectedCount": 20992,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "CJK 基本汉字区块"
+    },
+    {
+      "id": "u-cjk-ext-a",
+      "name": "CJK 扩展 A",
+      "category": "unicode",
+      "expectedCount": 6592,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "CJK Unified Ideographs Extension A"
+    },
+    {
+      "id": "u-cjk-ext-bf",
+      "name": "CJK 扩展 B–F",
+      "category": "unicode",
+      "expectedCount": 60400,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "大字符集范围，使用时需注意体积"
+    },
+    {
+      "id": "u-cjk-compat",
+      "name": "CJK 兼容表意文字",
+      "category": "unicode",
+      "expectedCount": 512,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "CJK Compatibility Ideographs"
+    },
+    {
+      "id": "u-cjk-punct",
+      "name": "CJK 符号与标点",
+      "category": "unicode",
+      "expectedCount": 64,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "CJK Symbols and Punctuation"
+    },
+    {
+      "id": "u-fullwidth",
+      "name": "全角与半角形式",
+      "category": "unicode",
+      "expectedCount": 240,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "Halfwidth and Fullwidth Forms"
+    },
+    {
+      "id": "u-kana",
+      "name": "平假名与片假名",
+      "category": "unicode",
+      "expectedCount": 192,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "Hiragana 与 Katakana 基础区间"
+    },
+    {
+      "id": "u-hangul",
+      "name": "谚文音节",
+      "category": "unicode",
+      "expectedCount": 11184,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "Hangul Syllables"
+    },
+    {
+      "id": "u-general-punct",
+      "name": "西文广义标点",
+      "category": "unicode",
+      "expectedCount": 112,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "General Punctuation"
+    },
+    {
+      "id": "f-latin-ascii",
+      "name": "ASCII",
+      "category": "functional",
+      "expectedCount": 95,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "可打印 ASCII，包含半角数字与标点"
+    },
+    {
+      "id": "f-latin-1",
+      "name": "Latin-1 补充",
+      "category": "functional",
+      "expectedCount": 96,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "Latin-1 Supplement"
+    },
+    {
+      "id": "f-latin-ext-a",
+      "name": "拉丁扩展 A",
+      "category": "functional",
+      "expectedCount": 128,
+      "standard": "Unicode 17.0.0 Blocks",
+      "description": "Latin Extended-A，包含拼音带调字母"
+    },
+    {
+      "id": "f-digits-cjk",
+      "name": "中文数字与序号",
+      "category": "functional",
+      "expectedCount": 57,
+      "standard": "项目功能分类（依据 Unicode 码点整理）",
+      "description": "中文数字、带圈数字一至二十与干支"
+    },
+    {
+      "id": "f-punct-cn",
+      "name": "常用中文标点",
+      "category": "functional",
+      "expectedCount": 24,
+      "standard": "项目功能分类（依据 Unicode 码点整理）",
+      "description": "常用中文标点显式清单"
+    },
+    {
+      "id": "f-punct-west",
+      "name": "常用西文标点",
+      "category": "functional",
+      "expectedCount": 12,
+      "standard": "项目功能分类（依据 Unicode 码点整理）",
+      "description": "General Punctuation 常用子集"
+    },
+    {
+      "id": "f-symbols",
+      "name": "常用符号",
+      "category": "functional",
+      "expectedCount": 21,
+      "standard": "项目功能分类（依据 Unicode 码点整理）",
+      "description": "常用货币、箭头、数学与版权符号"
+    },
+    {
+      "id": "sc-tgh-1",
+      "name": "通用规范汉字表 · 一级",
+      "category": "simplified",
+      "expectedCount": 3500,
+      "standard": "《通用规范汉字表》（2013）一级字表",
+      "description": "3500 个一级常用规范汉字，中文博客与日常写作首选"
+    },
+    {
+      "id": "sc-tgh-12",
+      "name": "通用规范汉字表 · 一级+二级",
+      "category": "simplified",
+      "expectedCount": 6500,
+      "standard": "《通用规范汉字表》（2013）一级、二级字表",
+      "description": "一级 3500 + 二级 3000，适合新闻、教育和一般出版"
+    },
+    {
+      "id": "sc-tgh-full",
+      "name": "通用规范汉字表 · 全表",
+      "category": "simplified",
+      "expectedCount": 8105,
+      "standard": "《通用规范汉字表》（2013）",
+      "description": "一级、二级、三级共 8105 字，含 196 个辅助平面汉字"
+    },
+    {
+      "id": "sc-xdhy-3500",
+      "name": "现代汉语常用字表（1988）",
+      "category": "simplified",
+      "expectedCount": 3500,
+      "standard": "《现代汉语常用字表》（1988）",
+      "description": "常用 2500 + 次常用 1000；旧版留存，新增项目优先选通规一级"
+    },
+    {
+      "id": "sc-xdhy-7000",
+      "name": "现代汉语通用字表（1988）",
+      "category": "simplified",
+      "expectedCount": 7000,
+      "standard": "《现代汉语通用字表》（1988）",
+      "description": "7000 个通用汉字；旧版留存，新增项目优先选通规表"
+    },
+    {
+      "id": "sc-gb2312",
+      "name": "GB 2312-80 汉字",
+      "category": "simplified",
+      "expectedCount": 6763,
+      "standard": "GB 2312-80",
+      "description": "按 GB 2312 汉字编码区提取，兼容旧系统"
+    },
+    {
+      "id": "sc-gbk",
+      "name": "GBK / CP936 汉字映射",
+      "category": "simplified",
+      "expectedCount": 20923,
+      "standard": "GBK 1.0 / Windows CP936 Unicode 映射",
+      "description": "CP936 映射中 20923 个唯一汉字码点（不含符号）"
+    },
+    {
+      "id": "sc-gb18030-l1",
+      "name": "GB 18030-2022 · 实现级别 1",
+      "category": "simplified",
+      "expectedCount": 27584,
+      "standard": "GB 18030-2022 实现级别 1",
+      "description": "级别 1 要求支持 CJK 基本区和扩展 A；范围很大，请按需使用"
+    },
+    {
+      "id": "sc-gb18030-l2",
+      "name": "GB 18030-2022 · 实现级别 2",
+      "category": "simplified",
+      "expectedCount": 27780,
+      "standard": "GB 18030-2022 实现级别 2",
+      "description": "系统软件合规场景；级别 1 加通规表中 196 个辅助平面汉字"
+    },
+    {
+      "id": "tc-big5-common",
+      "name": "Big5 常用字",
+      "category": "traditional",
+      "expectedCount": 5401,
+      "standard": "Big5 第一字面（常用字）",
+      "description": "Big5 第一字面 5401 个常用繁体汉字"
+    },
+    {
+      "id": "tc-big5-full",
+      "name": "Big5 全部汉字",
+      "category": "traditional",
+      "expectedCount": 13053,
+      "standard": "Big5 常用+次常用字",
+      "description": "Big5 两个字面共 13053 个唯一汉字"
+    },
+    {
+      "id": "tc-moe-common",
+      "name": "常用國字標準字體表",
+      "category": "traditional",
+      "expectedCount": 4808,
+      "standard": "台湾教育部《常用國字標準字體表》（1979）",
+      "description": "台湾教育与出版常用 4808 字；字符集不保证上传字体的字形合规"
+    },
+    {
+      "id": "tc-moe-less",
+      "name": "次常用國字標準字體表",
+      "category": "traditional",
+      "expectedCount": 6339,
+      "officialEntryCount": 6341,
+      "standard": "台湾教育部《次常用國字標準字體表》（1982）",
+      "description": "官方表 6341 条，去除两个重复字符后为 6339 个唯一码点"
+    },
+    {
+      "id": "tc-hk-common",
+      "name": "香港常用字字形表",
+      "category": "traditional",
+      "expectedCount": 4825,
+      "officialEntryCount": 4762,
+      "standard": "《常用字字形表》（2000 修订本）",
+      "description": "4762 条表项展开同序异体后为 4825 个唯一码点"
+    },
+    {
+      "id": "tc-hkscs",
+      "name": "香港增補字符集 HKSCS-2016",
+      "category": "traditional",
+      "expectedCount": 5033,
+      "standard": "HKSCS-2016",
+      "description": "5033 个码点（其中约 4606 个汉字），涵盖粤语、地名和人名用字"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"id":"u-hangul","name":"谚文音节","category":"unicode","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"Hangul Syllables","ranges":[[44032,55215]],"expectedCount":11184}

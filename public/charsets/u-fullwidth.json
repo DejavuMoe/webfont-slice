@@ -1,0 +1,1 @@
+{"id":"u-fullwidth","name":"全角与半角形式","category":"unicode","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"Halfwidth and Fullwidth Forms","ranges":[[65280,65519]],"expectedCount":240}

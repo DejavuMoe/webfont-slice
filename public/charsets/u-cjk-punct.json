@@ -1,0 +1,1 @@
+{"id":"u-cjk-punct","name":"CJK 符号与标点","category":"unicode","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"CJK Symbols and Punctuation","ranges":[[12288,12351]],"expectedCount":64}

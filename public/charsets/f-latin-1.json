@@ -1,0 +1,1 @@
+{"id":"f-latin-1","name":"Latin-1 补充","category":"functional","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"Latin-1 Supplement","ranges":[[160,255]],"expectedCount":96}

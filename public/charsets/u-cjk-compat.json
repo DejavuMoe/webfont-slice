@@ -1,0 +1,1 @@
+{"id":"u-cjk-compat","name":"CJK 兼容表意文字","category":"unicode","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"CJK Compatibility Ideographs","ranges":[[63744,64255]],"expectedCount":512}

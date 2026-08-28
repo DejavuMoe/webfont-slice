@@ -1,0 +1,1 @@
+{"id":"u-cjk-ext-bf","name":"CJK 扩展 B–F","category":"unicode","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"大字符集范围，使用时需注意体积","ranges":[[131072,191471]],"expectedCount":60400}

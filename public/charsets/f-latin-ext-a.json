@@ -1,0 +1,1 @@
+{"id":"f-latin-ext-a","name":"拉丁扩展 A","category":"functional","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"Latin Extended-A，包含拼音带调字母","ranges":[[256,383]],"expectedCount":128}

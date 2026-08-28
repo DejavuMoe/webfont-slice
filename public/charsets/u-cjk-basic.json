@@ -1,0 +1,1 @@
+{"id":"u-cjk-basic","name":"CJK 统一表意文字（基本集）","category":"unicode","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"CJK 基本汉字区块","ranges":[[19968,40959]],"expectedCount":20992}

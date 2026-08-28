@@ -1,0 +1,1 @@
+{"id":"u-kana","name":"平假名与片假名","category":"unicode","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"Hiragana 与 Katakana 基础区间","ranges":[[12352,12543]],"expectedCount":192}

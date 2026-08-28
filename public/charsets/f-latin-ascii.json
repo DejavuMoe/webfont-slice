@@ -1,0 +1,1 @@
+{"id":"f-latin-ascii","name":"ASCII","category":"functional","standard":"Unicode 17.0.0 Blocks","source":"https://www.unicode.org/Public/17.0.0/ucd/Blocks.txt","license":"Unicode Terms of Use","description":"可打印 ASCII，包含半角数字与标点","ranges":[[32,126]],"expectedCount":95}
