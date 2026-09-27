@@ -1,0 +1,364 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  --font-sans:
+    ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Text', 'Segoe UI',
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans CJK SC',
+    'Noto Sans SC', sans-serif;
+  --font-mono:
+    ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono',
+    monospace;
+
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-inset: var(--c-inset);
+  --color-hover: var(--c-hover);
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+  --color-fg: var(--c-fg);
+  --color-fg-2: var(--c-fg-2);
+  --color-fg-3: var(--c-fg-3);
+  --color-accent: var(--c-accent);
+  --color-accent-hover: var(--c-accent-hover);
+  --color-accent-fg: var(--c-accent-fg);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-ok: var(--c-ok);
+  --color-ok-soft: var(--c-ok-soft);
+  --color-warn: var(--c-warn);
+  --color-warn-soft: var(--c-warn-soft);
+  --color-danger: var(--c-danger);
+  --color-danger-soft: var(--c-danger-soft);
+  --color-cold: var(--c-cold);
+  --color-focus: var(--c-focus);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow-card: var(--c-shadow-card);
+  --shadow-pop: var(--c-shadow-pop);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+}
+
+/* 浅色与深色各一套取值；PreferencesProvider 把解析后的主题写到 data-theme。
+   任意前景/背景组合在两套主题下都保持 ≥ 4.5:1。 */
+:root {
+  color-scheme: light;
+  --c-bg: #f6f6f4;
+  --c-surface: #ffffff;
+  --c-inset: #f9f9f8;
+  --c-hover: #f1f1ef;
+  --c-line: rgb(23 23 26 / 9%);
+  --c-line-strong: rgb(23 23 26 / 18%);
+  --c-fg: #17171a;
+  --c-fg-2: #52525b;
+  --c-fg-3: #6b6b74;
+  --c-accent: #c8391f;
+  --c-accent-hover: #b1301a;
+  --c-accent-fg: #ffffff;
+  --c-accent-soft: #fdf1ee;
+  --c-ok: #127437;
+  --c-ok-soft: #e7f5ec;
+  --c-warn: #b45309;
+  --c-warn-soft: #fef6ec;
+  --c-danger: #b91c1c;
+  --c-danger-soft: #fdecec;
+  --c-cold: #cbd5e1;
+  --c-focus: #2563eb;
+  --c-grid: rgb(23 23 26 / 4.5%);
+  --c-shadow-card: 0 1px 2px rgb(23 23 26 / 4%), 0 1px 1px rgb(23 23 26 / 3%);
+  --c-shadow-pop: 0 12px 32px rgb(23 23 26 / 12%), 0 2px 6px rgb(23 23 26 / 6%);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --c-bg: #0b0b0c;
+  --c-surface: #131315;
+  --c-inset: #0f0f11;
+  --c-hover: #1c1c20;
+  --c-line: rgb(255 255 255 / 8%);
+  --c-line-strong: rgb(255 255 255 / 16%);
+  --c-fg: #ededef;
+  --c-fg-2: #b4b4bb;
+  --c-fg-3: #8e8e98;
+  --c-accent: #ff7a5c;
+  --c-accent-hover: #ff9075;
+  --c-accent-fg: #1a0f0c;
+  --c-accent-soft: #2b1713;
+  --c-ok: #4ade80;
+  --c-ok-soft: #10251a;
+  --c-warn: #fbbf24;
+  --c-warn-soft: #2a2110;
+  --c-danger: #f87171;
+  --c-danger-soft: #2c1414;
+  --c-cold: #3f4654;
+  --c-focus: #60a5fa;
+  --c-grid: rgb(255 255 255 / 3.5%);
+  --c-shadow-card: 0 1px 0 rgb(255 255 255 / 3%) inset, 0 1px 2px rgb(0 0 0 / 40%);
+  --c-shadow-pop: 0 16px 40px rgb(0 0 0 / 55%), 0 2px 8px rgb(0 0 0 / 40%);
+}
+
+/* 切换主题时屏蔽全部过渡：否则带 transition 的元素会在两套配色之间插值，
+   既产生涂抹感，也会让对比度检查读到不存在的中间色。 */
+:root[data-theme-switching] *,
+:root[data-theme-switching] *::before,
+:root[data-theme-switching] *::after {
+  transition: none !important;
+}
+
+/* 元素级基础样式放在 base 层：Tailwind 工具类（utilities 层）可以覆盖它们。
+   未分层的 CSS 会压过所有分层样式，曾导致按钮的文字颜色类全部失效。 */
+@layer base {
+  html {
+    background: var(--c-bg);
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--c-fg);
+    background: var(--c-bg);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  ::selection {
+    color: var(--c-accent-fg);
+    background: var(--c-accent);
+  }
+
+  details > summary {
+    list-style: none;
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] > summary .disclosure-chevron {
+    transform: rotate(90deg);
+  }
+
+  /* Grid 子项默认 min-width: auto，带 truncate 的不换行文字会把轨道撑宽；
+     统一允许收缩，由各组件自行决定截断或换行。 */
+  :where(.grid) > * {
+    min-width: 0;
+  }
+}
+
+@layer components {
+  .focus-ring:focus-visible,
+  .focus-ring-within:has(:focus-visible) {
+    outline: 2px solid var(--c-focus);
+    outline-offset: 2px;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .grid-paper {
+    background-image:
+      linear-gradient(var(--c-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--c-grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: -1px -1px;
+  }
+
+  .skip-link {
+    position: fixed;
+    z-index: 100;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--radius-md);
+    color: var(--c-accent-fg);
+    background: var(--c-accent);
+    transform: translateY(-200%);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
+  /* 细滑块：轨道显示已选比例，拇指有明确焦点。 */
+  .range {
+    --value: 50%;
+    appearance: none;
+    width: 100%;
+    height: 1.5rem;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      var(--c-accent) var(--value),
+      var(--c-line-strong) var(--value)
+    );
+  }
+
+  .range::-moz-range-track {
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      var(--c-accent) var(--value),
+      var(--c-line-strong) var(--value)
+    );
+  }
+
+  .range::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    margin-top: -7px;
+    border: 2px solid var(--c-surface);
+    border-radius: 50%;
+    background: var(--c-accent);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+    transition: transform 120ms var(--ease-out);
+  }
+
+  .range::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--c-surface);
+    border-radius: 50%;
+    background: var(--c-accent);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+  }
+
+  .range:active::-webkit-slider-thumb {
+    transform: scale(1.12);
+  }
+
+  .range:focus-visible {
+    outline: none;
+  }
+
+  .range:focus-visible::-webkit-slider-thumb {
+    outline: 2px solid var(--c-focus);
+    outline-offset: 2px;
+  }
+
+  .range:focus-visible::-moz-range-thumb {
+    outline: 2px solid var(--c-focus);
+    outline-offset: 2px;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-line-strong) transparent;
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.animate-enter {
+  animation: enter 320ms var(--ease-out) both;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--c-hover) 25%, var(--c-inset) 37%, var(--c-hover) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+@keyframes stripes {
+  to {
+    background-position: 24px 0;
+  }
+}
+
+.progress-stripes {
+  background-image: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 18%) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgb(255 255 255 / 18%) 50%,
+    rgb(255 255 255 / 18%) 75%,
+    transparent 75%
+  );
+  background-size: 24px 24px;
+  animation: stripes 0.8s linear infinite;
+}
+
+@keyframes sheet {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+
+.animate-sheet {
+  animation: sheet 260ms var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
