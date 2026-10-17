@@ -83,7 +83,7 @@ pnpm test:e2e         # builds first, then Playwright (full Chromium suite, main
 pnpm benchmark:planner path/to/font.ttf --measure
 ```
 
-`pnpm build` produces a purely static `dist/` that deploys to any static host, subpaths included, with no extra configuration.
+`pnpm build` produces a purely static `dist/` that deploys to any static host, subpaths included, with no extra configuration. Pushes to `master` are built and published by Woodpecker CI with an atomic symlink swap; see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
 
 ## Non-goals
 

@@ -83,7 +83,7 @@ pnpm test:e2e         # 先构建后运行 Playwright（Chromium 全套，Firefo
 pnpm benchmark:planner path/to/font.ttf --measure
 ```
 
-`pnpm build` 生成纯静态的 `dist/`，可以部署到任意静态托管，子路径无需额外配置。
+`pnpm build` 生成纯静态的 `dist/`，可以部署到任意静态托管，子路径无需额外配置。推送 `master` 后由 Woodpecker CI 构建并以原子符号链接切换发布，见 [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)。
 
 ## 非目标
 

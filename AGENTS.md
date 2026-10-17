@@ -146,7 +146,19 @@ pnpm benchmark:planner [font] [--scenario sc-common,sc-full,font-all] [--measure
 
 `pnpm check` enforces V8 coverage thresholds of 70 statements / 55 branches / 65 functions / 72 lines.
 
-## 9. Tests and the definition of done
+## 9. CI and deployment
+
+`.woodpecker/deploy.yml` is the deployment pipeline, written for Woodpecker 3.19.x and running on the `netcup-nano` agent.
+
+- The pipeline has two steps: `build` (in `node:24.19.0-alpine3.24`, installing pnpm, running `pnpm run check` and `scripts/verify-dist.sh dist`) and `publish` (in `alpine:3.24.1`, mounting `/var/www/webfont.zsh.moe:/deploy` and running `scripts/publish-dist.sh dist <release-id>`).
+- `verify-dist.sh` is the gate that a green unit-test run does not replace. It fails when the entry HTML is missing, asset URLs are absolute instead of `./`-relative, no WASM asset shipped, the character set data is absent, or the entry bundle exceeds 300 KiB gzipped. Extend it whenever the build gains a file the app cannot start without.
+- The deployment layout matches the other sites on this host: `releases/<id>/` plus a `html` symlink, guarded by `.deploy.lock`. `publish-dist.sh` copies a release, then writes the symlink under a temporary name and renames it over `html`, so a request sees either the old release or the new one. Never replace the deployment root in a single step, never delete the live directory before the new copy is complete, and keep the `flock` — a manual run can overlap a queue drain.
+- The pipeline must stay at `concurrency: limit 1`. Two pipelines writing the same deployment root would race.
+- The install step sets `pnpm_config_verify_deps_before_run=false` because the lockfile is produced on Windows; the Linux agent must not re-verify the platform-specific dependency graph.
+- E2E is deliberately absent from CI. It needs a full Playwright image and adds minutes to every deploy; run `pnpm test:e2e` locally before a release. Do not add it back without agreeing on the runtime cost.
+- Web server configurations (Nginx, Caddy, etc.) are managed directly on the host and must never be committed to this repository to prevent leaking infrastructure details. Cache policy: hashed bundles for a year immutable, character data for minutes, the service worker and entry HTML always revalidated. This is a plain static site, so `try_files` ends in `=404`, not an SPA fallback.
+
+## 10. Tests and the definition of done
 
 Every logical batch runs the relevant unit tests and `pnpm check`. Anything touching the UI, Workers, cancellation, downloads, or the PWA also runs `pnpm test:e2e`. Anything touching planning or the size model also runs `pnpm benchmark:planner --measure`.
 
@@ -163,7 +175,7 @@ Regressions that must survive permanently:
 - Western and monospace fonts: script type and monospace are detected, Western/Multilingual take the font's own characters by block without counting missing ones, the tail is cut at script boundaries, and the usage snippet points monospace families at code elements.
 - Reopening offline still generates; narrow viewports have no horizontal overflow; key pages have no serious axe violations.
 
-## 10. Pitfalls and non-goals
+## 11. Pitfalls and non-goals
 
 - React StrictMode is on in development, so effects mount, clean up, and mount again. The cleanup returned by `AppController.start()` must leave the controller able to start again — fresh `AbortController`s and re-queued interrupted work. E2E only exercises the production build, so `controller.test.ts` is the only place these bugs surface.
 - Vitest runs in Node by default. A DOM test file declares `// @vitest-environment jsdom` on its first line.

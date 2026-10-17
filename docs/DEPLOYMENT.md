@@ -15,6 +15,50 @@ pnpm build
 
 建议给 `.wasm` 返回 `application/wasm` 并开启 Brotli 或 gzip。
 
+### 自动部署（Woodpecker CI）
+
+`.woodpecker/deploy.yml` 在推送 `master` 时构建并发布到 `/var/www/webfont.zsh.moe`，使用 Woodpecker 3.19 语法。流水线分两步：
+
+1. `build`：在 `node:24.19.0-alpine3.24` 容器中安装 pnpm，运行 `pnpm install --frozen-lockfile`，执行 `pnpm run check` 完整门禁，并通过 `scripts/verify-dist.sh dist` 校验产物（入口 HTML 存在、资源是相对路径、WASM 未被内联、字表数据齐全、首屏 gzip ≤ 300 KiB）。
+2. `publish`：在 `alpine:3.24.1` 容器中挂载 `/var/www/webfont.zsh.moe:/deploy`，运行 `scripts/publish-dist.sh dist <release-id>` 原子替换。
+
+发布目录结构与这台服务器上其他站点一致：
+
+```text
+/var/www/webfont.zsh.moe/
+├─ .deploy.lock                        flock 部署锁
+├─ releases/<sha>-<pipeline>-<reruns>/ 每次构建一份不可变副本
+└─ html -> releases/...                网站服务器指向的符号链接
+```
+
+`html` 先以临时名创建再 `mv -T` 覆盖，`rename(2)` 在同一目录内是原子的，因此请求要么看到旧版本、要么看到新版本，不会读到复制一半的目录。旧版本保留最近 5 份，便于回滚：
+
+```bash
+ln -sfn releases/<旧版本> /var/www/webfont.zsh.moe/.html.tmp
+mv -T /var/www/webfont.zsh.moe/.html.tmp /var/www/webfont.zsh.moe/html
+```
+
+Web 服务器需要跟随符号链接（nginx 默认 `disable_symlinks off`），站点根目录指向 `html/`。
+
+E2E 不在流水线里：它需要带浏览器的完整 Playwright 镜像，会让每次部署多等数分钟。按 AGENTS.md，涉及 UI、Worker、取消、下载或 PWA 的改动在本地跑 `pnpm test:e2e` 即可。
+
+### Web 服务器配置
+
+Web 服务器（如 Nginx、Caddy）的虚拟主机配置直接在服务器上维护，不得提交到代码仓库中以防泄露源站与基础设施细节。
+
+站点根目录指向 `html/` 符号链接（对应当前活动 release），并确保开启符号链接跟随（Nginx 默认 `disable_symlinks off`）。
+
+建议的缓存策略：
+
+| 路径                              | 缓存           | 原因                             |
+| --------------------------------- | -------------- | -------------------------------- |
+| `/assets/`                        | 一年 immutable | 文件名带内容哈希，改名即改内容   |
+| `/charsets/`、`/freq/`            | 5 分钟         | 文件名稳定但发布间会变           |
+| `/sw.js`、`/manifest.webmanifest` | `no-cache`     | 陈旧的 Service Worker 会挡住修复 |
+| 其余（含 `index.html`）           | `no-cache`     | 入口决定加载哪些哈希文件         |
+
+这是普通静态站，不是 SPA：应用没有客户端路由（只有 `#` 锚点），因此 `try_files` 以 `=404` 结尾。若改成 SPA 回退，拼错的路径会返回首页而不是 404，掩盖坏链。
+
 ## 部署生成的字体
 
 ZIP 结构：

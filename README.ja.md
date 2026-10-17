@@ -83,7 +83,7 @@ pnpm test:e2e         # 先にビルドしてから Playwright を実行（Chrom
 pnpm benchmark:planner path/to/font.ttf --measure
 ```
 
-`pnpm build` は純粋な静的 `dist/` を生成し、サブパスを含めどの静的ホスティングにも追加設定なしで配備できます。
+`pnpm build` は純粋な静的 `dist/` を生成し、サブパスを含めどの静的ホスティングにも追加設定なしで配備できます。`master` へのプッシュ後は Woodpecker CI がビルドし、シンボリックリンクを原子的に切り替えて配備します。詳細は [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) を参照してください。
 
 ## 対象外
 

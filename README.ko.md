@@ -83,7 +83,7 @@ pnpm test:e2e         # 먼저 빌드한 뒤 Playwright 실행 (Chromium 전체,
 pnpm benchmark:planner path/to/font.ttf --measure
 ```
 
-`pnpm build`는 순수 정적 `dist/`를 만들며, 하위 경로를 포함해 어떤 정적 호스팅에도 별도 설정 없이 배포할 수 있습니다.
+`pnpm build`는 순수 정적 `dist/`를 만들며, 하위 경로를 포함해 어떤 정적 호스팅에도 별도 설정 없이 배포할 수 있습니다. `master`에 푸시하면 Woodpecker CI가 빌드한 뒤 심볼릭 링크를 원자적으로 바꿔 배포합니다. 자세한 내용은 [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)를 참고하세요.
 
 ## 범위 밖
 
